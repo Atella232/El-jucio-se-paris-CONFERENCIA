@@ -1,0 +1,961 @@
+<title>El juicio de Paris</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Marcellus+SC&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+<style>
+/* Concepto: un vaso ático visto de noche en un museo. Fondo de barniz negro con grano,
+   ornamento en rojo de figuras rojas (meandro), y una sola luz dorada: la manzana.
+   Hero con el Rubens del Prado; friso del mito; diosas recortadas del lienzo;
+   línea del tiempo a escala real; sala de galería por épocas con cartelas de museo. */
+:root{
+  --glaze:#100C09;      /* barniz negro ático */
+  --glaze-2:#18120E;
+  --glaze-3:#221913;
+  --bone:#EEE4D4;       /* texto: hueso */
+  --muted:#A8977F;
+  --faint:#6F604F;
+  --clay:#C4643A;       /* figuras rojas */
+  --clay-2:#E3936A;
+  --gold:#D9A847;       /* la manzana */
+  --gold-2:#F3D27E;
+  --line:rgba(238,228,212,.13);
+  --line-2:rgba(238,228,212,.24);
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-label:"Marcellus SC","Trajan Pro","Optima",Georgia,serif;
+  --f-body:"Spectral",Georgia,"Times New Roman",serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--glaze)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{background:var(--glaze);color:var(--bone);font-family:var(--f-body);font-weight:300;font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--glaze)}
+/* grano del barniz */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:76rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.label{font-family:var(--f-label);font-size:.82rem;letter-spacing:.16em;color:var(--clay-2)}
+.muted{color:var(--muted)}
+em{font-style:italic}
+
+/* meandro (greca) */
+.meander{height:22px;background-repeat:repeat-x;background-position:center;background-size:44px 22px;opacity:.85;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='22' viewBox='0 0 44 22'%3E%3Cpath d='M0 20H18V4H6V14H12V10' fill='none' stroke='%23C4643A' stroke-width='2.2'/%3E%3Cpath d='M22 20H40V4H28V14H34V10' fill='none' stroke='%23C4643A' stroke-width='2.2'/%3E%3Cpath d='M18 20H22M40 20H44M0 1H44' fill='none' stroke='%23C4643A' stroke-width='2.2'/%3E%3C/svg%3E")}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;isolation:isolate;overflow:hidden;padding-block:clamp(5rem,14vw,10rem) clamp(3rem,8vw,6rem)}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%;filter:saturate(.85) contrast(1.05);transform:scale(1.04);animation:drift 26s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.1) translateX(-1.5%)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(60% 70% at 78% 40%, rgba(16,12,9,.15), rgba(16,12,9,.75) 70%),
+    linear-gradient(90deg, rgba(16,12,9,.94) 0%, rgba(16,12,9,.78) 38%, rgba(16,12,9,.25) 70%, rgba(16,12,9,.55) 100%),
+    linear-gradient(0deg, var(--glaze) 0%, rgba(16,12,9,0) 30%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:2rem;align-items:center}
+.hero .label{display:flex;gap:.8rem;align-items:center}
+.hero .label::before{content:"";width:2.2rem;height:1px;background:var(--clay)}
+.hero h1{font-size:clamp(3.4rem,10.5vw,8.6rem);letter-spacing:-.02em;margin-block:1.2rem 1.6rem;line-height:.92}
+.hero h1 .l1{display:block}
+.hero h1 .l2{display:block;font-style:italic;color:var(--gold);padding-left:.55em}
+.hero .lede{max-width:34ch;font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.5}
+.hero .facts{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:2.2rem}
+.hero .facts div{display:grid;gap:.1rem}
+.hero .facts b{font-family:var(--f-display);font-weight:400;font-size:1.9rem;color:var(--gold);line-height:1}
+.hero .facts span{font-family:var(--f-label);font-size:.74rem;letter-spacing:.14em;color:var(--muted)}
+.hero-credit{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:1rem;font-size:.78rem;color:var(--muted);text-align:right;max-width:24rem}
+.apple{width:min(100%,22rem);aspect-ratio:1;margin-left:auto}
+.apple svg{width:100%;height:100%;overflow:visible}
+.ring{transform-origin:200px 200px;animation:spin 80s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ring text{font-family:var(--f-label);font-size:17px;letter-spacing:.42em;fill:var(--bone)}
+.glow{animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.55}}
+
+/* ---------- Secciones ---------- */
+section{padding-block:clamp(4rem,9vw,7rem)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.2rem 4rem;align-items:end;margin-bottom:clamp(2.2rem,5vw,3.5rem)}
+.head h2{font-size:clamp(2.4rem,6vw,4.6rem);letter-spacing:-.01em;margin-top:.8rem}
+.head h2 em{color:var(--gold)}
+.head p{max-width:56ch;color:var(--muted)}
+.num{font-family:var(--f-display);font-style:italic;color:var(--clay);font-size:1.1rem;margin-right:.6rem}
+
+/* Inscripción */
+.kallisti{text-align:center;padding-block:clamp(3.5rem,8vw,6rem);border-block:1px solid var(--line);background:radial-gradient(50% 120% at 50% 50%, rgba(217,168,71,.10), transparent 70%)}
+.kallisti .greek{font-family:var(--f-display);font-size:clamp(2.6rem,9vw,7rem);letter-spacing:.14em;color:var(--gold);line-height:1;text-shadow:0 0 40px rgba(217,168,71,.25)}
+.kallisti .tr{font-family:var(--f-display);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);margin-top:1rem}
+.kallisti p.note{max-width:60ch;margin:1.4rem auto 0;color:var(--muted);font-size:1rem}
+
+/* Mito: friso */
+.frieze{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.frieze li{background:var(--glaze);padding:1.6rem 1.4rem 1.8rem;display:grid;gap:.6rem;align-content:start;position:relative;min-width:0;transition:background .3s}
+.frieze li:hover{background:var(--glaze-2)}
+.frieze .rn{font-family:var(--f-display);font-size:2.4rem;color:var(--clay);line-height:1}
+.frieze h3{font-size:1.45rem}
+.frieze p{color:var(--muted);font-size:1rem}
+.frieze .src{font-family:var(--f-label);font-size:.7rem;letter-spacing:.12em;color:var(--faint);margin-top:.3rem}
+.frieze li.hl{background:linear-gradient(160deg, rgba(196,100,58,.14), transparent 60%), var(--glaze)}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1rem,3vw,2rem);margin-top:clamp(2rem,5vw,3.5rem)}
+
+/* Obras (figure) */
+.work{margin:0;display:grid;gap:.9rem;align-content:start;min-width:0}
+.work button.zoom{all:unset;cursor:zoom-in;display:block;position:relative;overflow:hidden;background:var(--glaze-2);border-radius:2px}
+.work button.zoom:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.work button.zoom img{width:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1), filter .5s;filter:saturate(.92)}
+.work button.zoom:hover img{transform:scale(1.035);filter:saturate(1.05)}
+.work button.zoom::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(238,228,212,.08);pointer-events:none}
+.cartela{display:grid;gap:.25rem;border-left:1px solid var(--clay);padding-left:.9rem}
+.cartela .a{font-family:var(--f-label);font-size:.78rem;letter-spacing:.12em;color:var(--clay-2)}
+.cartela .t{font-family:var(--f-display);font-style:italic;font-size:1.3rem;line-height:1.2}
+.cartela .m{font-size:.88rem;color:var(--muted);line-height:1.45}
+.cartela .d{font-size:.98rem;line-height:1.55;margin-top:.35rem}
+.cartela .cr{font-size:.74rem;color:var(--faint);margin-top:.2rem}
+
+/* Fuentes */
+.sources{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 3.5rem}
+.src-row{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1.2rem;padding-block:1.25rem;border-top:1px solid var(--line)}
+.src-row .when{font-family:var(--f-label);font-size:.78rem;letter-spacing:.1em;color:var(--clay-2);padding-top:.35rem}
+.src-row h3{font-size:1.45rem}
+.src-row h3 small{font-family:var(--f-body);font-style:italic;font-size:1rem;color:var(--muted);margin-left:.35rem}
+.src-row p{color:var(--muted);font-size:1rem;margin-top:.35rem}
+blockquote.verse{margin:1.6rem 0 0;padding:1.6rem 1.8rem;border:1px solid var(--line);background:var(--glaze-2);font-family:var(--f-display);font-style:italic;font-size:1.35rem;line-height:1.5}
+blockquote.verse .gap{display:block;color:var(--faint);font-style:normal;font-family:var(--f-label);font-size:.8rem;letter-spacing:.2em;margin-block:.3rem}
+blockquote.verse cite{display:block;margin-top:.9rem;font-family:var(--f-label);font-style:normal;font-size:.76rem;letter-spacing:.12em;color:var(--muted)}
+
+/* Diosas */
+.goddesses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,2.5vw,1.8rem)}
+.gcard{position:relative;display:grid;grid-template-rows:auto 1fr;background:var(--glaze-2);border:1px solid var(--line);min-width:0}
+.gcard .pic{position:relative;aspect-ratio:3/4;overflow:hidden;max-width:100%}
+.gcard .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.gcard:hover .pic img{transform:scale(1.05)}
+.gcard .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, var(--glaze-2) 2%, rgba(24,18,14,0) 45%)}
+.gcard .name{position:absolute;left:1.3rem;bottom:1rem;z-index:1}
+.gcard .name h3{font-size:clamp(2.2rem,4vw,3.1rem)}
+.gcard .name span{font-family:var(--f-label);font-size:.8rem;letter-spacing:.16em;color:var(--clay-2)}
+.gcard .body{padding:1.1rem 1.3rem 1.5rem;display:grid;gap:1rem;align-content:start}
+.promise{font-family:var(--f-display);font-style:italic;font-size:1.3rem;line-height:1.35;color:var(--gold-2)}
+.promise::before{content:"Promete";display:block;font-family:var(--f-label);font-style:normal;font-size:.7rem;letter-spacing:.18em;color:var(--gold);margin-bottom:.35rem}
+.gcard dl{margin:0;display:grid;gap:.7rem}
+.gcard dl div{display:grid;gap:.1rem}
+.gcard dt{font-family:var(--f-label);font-size:.7rem;letter-spacing:.16em;color:var(--muted)}
+.gcard dd{margin:0;font-size:.98rem}
+.gnote{margin-top:1.6rem;color:var(--muted);font-size:.95rem;max-width:72ch}
+
+/* Juego */
+.judge{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:stretch}
+.judge-pic{position:relative;overflow:hidden;min-height:22rem;border:1px solid var(--line)}
+.judge-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:40% 30%}
+.judge-pic::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(16,12,9,.85), transparent 55%)}
+.judge-pic figcaption{position:absolute;left:1rem;right:1rem;bottom:.9rem;z-index:1;font-size:.8rem;color:var(--muted)}
+.judge h2{font-size:clamp(2.2rem,5vw,3.8rem)}
+.judge .intro{margin-top:1rem;color:var(--muted);max-width:52ch}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin-top:1.6rem}
+.choice{font:inherit;color:var(--bone);background:transparent;border:1px solid var(--line-2);padding:1rem .9rem;cursor:pointer;text-align:left;display:grid;gap:.25rem;transition:border-color .25s, background .25s}
+.choice b{font-family:var(--f-display);font-weight:400;font-size:1.4rem}
+.choice span{font-size:.85rem;color:var(--muted)}
+.choice:hover{border-color:var(--clay)}
+.choice[aria-pressed="true"]{border-color:var(--gold);background:rgba(217,168,71,.08)}
+.verdict{margin-top:1.5rem;padding:1.4rem 1.5rem;border-left:2px solid var(--gold);background:var(--glaze-2);min-height:11rem}
+.verdict .label{color:var(--gold)}
+.verdict h3{font-size:1.75rem;margin:.45rem 0 .7rem}
+.verdict p{color:var(--muted);font-size:1rem}
+.verdict p + p{margin-top:.6rem}
+
+/* Línea del tiempo */
+.tl-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;border-block:1px solid var(--line);padding-block:1rem;scrollbar-color:var(--clay) transparent}
+.tl-scroll svg{display:block;min-width:1200px;width:100%;height:auto}
+.tl-scroll text{font-family:var(--f-body)}
+.tl-legend{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:1rem;font-size:.9rem;color:var(--muted)}
+.tl-legend i{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.45rem;vertical-align:middle}
+.tl-hint{font-size:.85rem;color:var(--faint);margin-top:.4rem}
+.tl-note{margin-top:1.4rem;max-width:68ch;color:var(--muted);font-size:1rem}
+
+/* Galería */
+.era-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(16,12,9,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-block:1px solid var(--line)}
+.era-nav .wrap{display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none;padding-block:.55rem}
+.era-nav .wrap::-webkit-scrollbar{display:none}
+.era-nav a{flex:none;text-decoration:none;color:var(--muted);font-family:var(--f-label);font-size:.8rem;letter-spacing:.1em;padding:.4rem .8rem;border-radius:999px;white-space:nowrap;transition:color .2s, background .2s}
+.era-nav a:hover{color:var(--bone)}
+.era-nav a.on{color:var(--glaze);background:var(--gold)}
+#galeria{padding-top:0}
+.era{padding-block:clamp(3rem,6vw,4.5rem);border-top:1px solid var(--line);scroll-margin-top:3.4rem}
+.era:first-of-type{border-top:0}
+.era-head{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:.8rem 3rem;align-items:baseline;margin-bottom:2.2rem}
+.era-head .c{font-family:var(--f-label);font-size:.85rem;letter-spacing:.16em;color:var(--clay-2)}
+.era-head h3{font-size:clamp(2rem,4.4vw,3.2rem)}
+.era-head p{grid-column:2;color:var(--muted);max-width:62ch;font-size:1.02rem}
+.grid-w{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.4rem,3vw,2.4rem) clamp(1rem,2.5vw,2rem);align-items:start}
+.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(16rem,1fr));gap:0 2rem;margin-top:2rem}
+.n{padding-block:1rem 1.2rem;border-top:1px solid var(--line);display:grid;gap:.3rem;align-content:start;min-width:0}
+.n h4{font-size:1.2rem;line-height:1.2}
+.n .m{font-family:var(--f-label);font-size:.72rem;letter-spacing:.1em;color:var(--clay-2)}
+.n p{font-size:.97rem;color:var(--muted)}
+.tag{justify-self:start;font-family:var(--f-label);font-size:.66rem;letter-spacing:.14em;color:var(--gold);border:1px solid rgba(217,168,71,.45);border-radius:999px;padding:.08rem .6rem;margin-top:.2rem}
+
+/* Conclusión */
+.finale{position:relative;overflow:hidden;isolation:isolate;padding-block:clamp(5rem,12vw,9rem);border-top:1px solid var(--line)}
+.finale-bg{position:absolute;inset:0;z-index:-1;opacity:.22}
+.finale-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:grayscale(.4)}
+.finale::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 80% at 50% 40%, rgba(16,12,9,.45), var(--glaze) 85%)}
+.finale blockquote{margin:0;font-family:var(--f-display);font-size:clamp(2.1rem,6vw,4.8rem);line-height:1.08;max-width:18ch;text-wrap:balance}
+.finale blockquote em{color:var(--gold)}
+.finale-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem;margin-top:clamp(2.5rem,6vw,4rem)}
+.finale-grid h3{font-size:1.4rem;margin-bottom:.5rem}
+.finale-grid p{color:var(--muted);font-size:.98rem}
+
+/* Verificación */
+.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 3rem}
+.check{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1rem;padding-block:1.1rem;border-top:1px solid var(--line)}
+.check .k{font-family:var(--f-label);font-size:.72rem;letter-spacing:.12em;color:var(--glaze);background:var(--clay-2);padding:.2rem .5rem;height:max-content;border-radius:2px;margin-top:.25rem}
+.check .k.ok{background:var(--gold)}
+.check p{font-size:1rem;color:var(--muted)}
+.check p b{color:var(--bone);font-weight:500}
+.unv{margin-top:2.5rem;padding:1.4rem 1.5rem;border:1px dashed var(--line-2);color:var(--muted);font-size:.97rem}
+.unv h3{font-size:1.3rem;color:var(--bone);margin-bottom:.6rem}
+
+footer{border-top:1px solid var(--line);padding-block:3rem 4rem;font-size:.9rem;color:var(--muted)}
+footer h3{font-size:1.5rem;color:var(--bone);margin-bottom:1rem}
+.refs{columns:2 22rem;column-gap:3rem;margin:0;padding:0;list-style:none}
+.refs li{break-inside:avoid;padding-block:.35rem;border-top:1px solid var(--line);font-size:.88rem}
+.refs a{color:var(--clay-2);text-decoration:none}
+.refs a:hover{text-decoration:underline}
+.fine{margin-top:2rem;font-size:.82rem;color:var(--faint);max-width:80ch}
+
+/* Lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(96vw,1400px);max-height:94vh;color:var(--bone)}
+dialog.lb::backdrop{background:rgba(8,6,4,.92)}
+dialog.lb figure{margin:0;display:grid;gap:.8rem}
+dialog.lb img{max-height:80vh;width:auto;max-width:100%;margin:0 auto}
+dialog.lb figcaption{text-align:center;font-size:.95rem;color:var(--muted)}
+dialog.lb figcaption b{font-family:var(--f-display);font-style:italic;font-weight:400;color:var(--bone);font-size:1.2rem}
+dialog.lb .x{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));font:inherit;font-family:var(--f-label);letter-spacing:.14em;font-size:.8rem;background:var(--glaze-2);color:var(--bone);border:1px solid var(--line-2);padding:.55rem .9rem;cursor:pointer}
+
+/* Responsive */
+@media (max-width: 980px){
+  .frieze{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .finale-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .s4,.s5{grid-column:span 6}.s7,.s8{grid-column:span 12}
+}
+@media (max-width: 760px){
+  .hero-grid,.head,.pair,.sources,.judge,.checks{grid-template-columns:minmax(0,1fr)}
+  .apple{width:13rem;margin:0;order:-1}
+  .hero-credit{position:static;text-align:left;margin-top:2rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .goddesses{grid-template-columns:minmax(0,1fr)}
+  .gcard{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:auto}
+  .gcard .pic{aspect-ratio:auto;min-height:100%}
+  .era-head{grid-template-columns:minmax(0,1fr)}
+  .era-head p{grid-column:1}
+  .s4,.s5,.s6{grid-column:span 12}
+  .judge-pic{min-height:16rem}
+}
+@media (max-width: 520px){
+  .frieze{grid-template-columns:minmax(0,1fr)}
+  .finale-grid{grid-template-columns:minmax(0,1fr)}
+  .gcard{grid-template-columns:minmax(0,1fr)}
+  .gcard .pic{aspect-ratio:4/5}
+  .choices{grid-template-columns:minmax(0,1fr)}
+  .src-row{grid-template-columns:minmax(0,1fr);gap:.3rem}
+  .check{grid-template-columns:minmax(0,1fr);gap:.4rem}
+}
+</style>
+
+<!-- ============ PORTADA ============ -->
+<header class="hero">
+  <div class="hero-bg"><img src="img/rubensPrado.jpg" alt="El juicio de Paris de Rubens: Paris y Mercurio a la izquierda, las tres diosas desnudas a la derecha" fetchpriority="high"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="label">Recorrido iconográfico · Conferencia</p>
+      <h1><span class="l1">El juicio</span><span class="l2">de Paris</span></h1>
+      <p class="lede">Una manzana de oro, tres diosas y un príncipe que cuidaba ovejas en el monte Ida. Veintiséis siglos de imágenes de uno de los mitos que más arte ha producido.</p>
+      <div class="facts">
+        <div><b>c. 645 a. C.</b><span>Primera imagen conocida</span></div>
+        <div><b>9</b><span>Épocas en la galería</span></div>
+        <div><b>2026</b><span>La Helena de Nolan</span></div>
+      </div>
+    </div>
+    <div class="apple" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="ag" cx="36%" cy="32%" r="72%">
+            <stop offset="0" stop-color="#FFF3C4"/>
+            <stop offset=".3" stop-color="#E9BD57"/>
+            <stop offset=".75" stop-color="#B98019"/>
+            <stop offset="1" stop-color="#6E4708"/>
+          </radialGradient>
+          <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#D9A847" stop-opacity=".45"/>
+            <stop offset="1" stop-color="#D9A847" stop-opacity="0"/>
+          </radialGradient>
+          <path id="circ" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/>
+        </defs>
+        <circle class="glow" cx="200" cy="210" r="150" fill="url(#halo)"/>
+        <circle cx="200" cy="200" r="194" fill="none" stroke="rgba(238,228,212,.18)"/>
+        <circle cx="200" cy="200" r="148" fill="none" stroke="rgba(196,100,58,.5)" stroke-dasharray="2 6"/>
+        <g class="ring"><text><textPath href="#circ">ΤΗΙ ΚΑΛΛΙΣΤΗΙ · PARA LA MÁS HERMOSA · ΤΗΙ ΚΑΛΛΙΣΤΗΙ · PARA LA MÁS HERMOSA ·</textPath></text></g>
+        <path d="M222 100 C246 88 268 96 278 112 C254 124 234 118 222 100 Z" fill="#5E7A45"/>
+        <path d="M204 138 C206 114 214 100 222 92" fill="none" stroke="#3B2A1A" stroke-width="6" stroke-linecap="round"/>
+        <path d="M200 144 C232 122 288 130 294 198 C300 264 254 304 224 300 C212 298 206 292 200 292 C194 292 188 298 176 300 C146 304 100 264 106 198 C112 130 168 122 200 144 Z" fill="url(#ag)"/>
+        <ellipse cx="166" cy="182" rx="15" ry="27" fill="#FFF7DA" opacity=".5" transform="rotate(-24 166 182)"/>
+      </svg>
+    </div>
+  </div>
+  <p class="hero-credit">Fondo: Pedro Pablo Rubens, <em>El juicio de Paris</em>, h. 1638. Museo del Prado.</p>
+</header>
+
+<div class="meander" role="presentation"></div>
+
+<main>
+  <!-- ============ INSCRIPCIÓN ============ -->
+  <div class="kallisti">
+    <div class="wrap">
+      <p class="label">La inscripción de la manzana</p>
+      <p class="greek" lang="grc" style="margin-top:1rem">ΤΗΙ ΚΑΛΛΙΣΤΗΙ</p>
+      <p class="tr">tē(i) kallístē(i) · «para la más hermosa»</p>
+      <p class="note">El resumen de los Cantos Ciprios cuenta la disputa sin mencionar ninguna manzana. El fruto de oro está en textos de época romana, como los de Higino y el Pseudo-Apolodoro, y en Luciano (s. II d. C.) ya lleva escrito «para la bella». En las primeras imágenes, la manzana tampoco aparece siempre.</p>
+    </div>
+  </div>
+
+  <!-- ============ EL MITO ============ -->
+  <section id="mito">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label"><span class="num">I</span>El relato</p><h2>El mito en <em>siete escenas</em></h2></div>
+        <p>Son los hechos tal como los cuentan los Cantos Ciprios (en el resumen de Proclo), Higino y el Pseudo-Apolodoro. La ponente no contó el mito: lo leyó en sus fuentes.</p>
+      </div>
+      <ol class="frieze">
+        <li><span class="rn">I</span><h3>El plan de Zeus</h3><p>Zeus decide con Temis provocar la guerra de Troya para aliviar a la Tierra del exceso de hombres.</p><span class="src">Cantos Ciprios · Proclo</span></li>
+        <li><span class="rn">II</span><h3>Las bodas de Tetis y Peleo</h3><p>Todos los dioses están invitados al banquete, salvo Eris, la Discordia.</p><span class="src">Higino, Fábula 92 · Catulo, 64</span></li>
+        <li class="hl"><span class="rn">III</span><h3>La manzana</h3><p>Eris lanza desde la puerta una manzana de oro para la más bella. Hera, Atenea y Afrodita la reclaman.</p><span class="src">Higino, Fábula 92</span></li>
+        <li><span class="rn">IV</span><h3>Zeus no elige</h3><p>Ordena a Hermes que lleve a las tres ante Alejandro, es decir, Paris, en el monte Ida.</p><span class="src">Proclo · Higino</span></li>
+        <li><span class="rn">V</span><h3>El príncipe pastor</h3><p>Hécuba soñó que paría una antorcha que incendiaba Troya. El niño fue entregado al pastor Agelao y creció en el Ida, ajeno a su origen.</p><span class="src">Pseudo-Apolodoro, 3.12.5</span></li>
+        <li class="hl"><span class="rn">VI</span><h3>Tres promesas</h3><p>Hera ofrece reinar sobre toda la tierra y la mayor riqueza; Atenea, ser el más valiente y diestro en todas las artes; Afrodita, a Helena, hija de Tíndaro, como esposa.</p><span class="src">Higino, Fábula 92</span></li>
+        <li><span class="rn">VII</span><h3>Helena y Troya</h3><p>Paris elige a Afrodita y se lleva a Helena del palacio de Menelao. Hera y Atenea se vuelven contra los troyanos.</p><span class="src">Higino · Proclo</span></li>
+        <li><span class="rn">∴</span><h3>Lo que nadie explica</h3><p>Ninguna fuente dice por qué Paris eligió a Afrodita. La ponente lo dejó abierto a debate.</p><span class="src">Lectura de la ponente</span></li>
+      </ol>
+
+      <div class="pair">
+        <figure class="work">
+          <button class="zoom" type="button" data-full="img/jordaens.jpg" data-cap="Jacob Jordaens (sobre diseño de Rubens), Las bodas de Tetis y Peleo, 1636–1638. Museo del Prado."><img src="img/jordaens.jpg" alt="Banquete de los dioses; en el centro, las tres diosas se disputan la manzana" loading="lazy"></button>
+          <figcaption class="cartela">
+            <span class="a">Jacob Jordaens, sobre diseño de Rubens</span>
+            <span class="t">Las bodas de Tetis y Peleo</span>
+            <span class="m">1636–1638 · Óleo sobre lienzo · Museo del Prado (P001634) · Serie de la Torre de la Parada</span>
+            <span class="d">Eris huye por el aire tras lanzar la manzana. Juno, velada como una matrona, y Minerva, con armadura, alargan la mano hacia el fruto. Venus se recuesta con Cupido agarrado a su rodilla.</span>
+          </figcaption>
+        </figure>
+        <figure class="work">
+          <button class="zoom" type="button" data-full="img/turner.jpg" data-cap="J. M. W. Turner, La diosa de la Discordia elige la manzana de la disputa en el jardín de las Hespérides, expuesto en 1806. Tate, Londres."><img src="img/turner.jpg" alt="Paisaje montañoso con un dragón en la cima y pequeñas figuras en un jardín" loading="lazy"></button>
+          <figcaption class="cartela">
+            <span class="a">J. M. W. Turner</span>
+            <span class="t">La diosa de la Discordia elige la manzana de la disputa en el jardín de las Hespérides</span>
+            <span class="m">Expuesto en 1806 · Óleo sobre lienzo · Tate, Londres</span>
+            <span class="d">La manzana venía del jardín de las Hespérides, en el extremo occidental del mundo, que algunas tradiciones han identificado con las Canarias. Turner pinta el paisaje y deja el mito en pequeño: Eris escoge el fruto junto a las ninfas.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="meander" role="presentation"></div>
+
+  <!-- ============ FUENTES ============ -->
+  <section id="fuentes">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label"><span class="num">II</span>Vale más una palabra que mil imágenes</p><h2>Las <em>fuentes</em></h2></div>
+        <p>Cada texto añade una pieza que luego heredan los artistas: la manzana, el desnudo, el sueño, el escenario teatral.</p>
+      </div>
+      <div class="sources">
+        <div>
+          <div class="src-row"><span class="when">Época arcaica</span><div><h3>Cantos Ciprios <small>resumen de Proclo</small></h3><p>Poema perdido que abría el ciclo troyano. Por el resumen de la Crestomatía de Proclo sabemos que Eris provoca la disputa durante el banquete de bodas y que Hermes lleva a las diosas ante Alejandro en el Ida.</p></div></div>
+          <div class="src-row"><span class="when">s. VIII a. C.</span><div><h3>Ilíada <small>canto XXIV</small></h3><p>La única alusión homérica clara al juicio. Georges Dumézil la leyó como la huella de las tres funciones indoeuropeas.</p></div></div>
+          <div class="src-row"><span class="when">s. I a. C.</span><div><h3>Catulo <small>poema 64</small></h3><p>Describe las bodas de Tetis y Peleo, el marco del episodio.</p></div></div>
+          <div class="src-row"><span class="when">s. II d. C.</span><div><h3>Luciano de Samósata <small>Diálogos de los dioses, 20</small></h3><p>La manzana lleva escrito «para la bella». Las diosas se desnudan ante Paris: Atenea exige que Afrodita se quite el ceñidor, que guarda su magia, y Afrodita le pide a cambio que se quite el casco.</p></div></div>
+          <div class="src-row"><span class="when">s. II d. C.</span><div><h3>Apuleyo <small>El asno de oro, X, 30–32</small></h3><p>El juicio como pantomima en Corinto: un monte de madera con árboles, Mercurio bailando con la manzana, Juno con cetro y diadema, Minerva armada y Venus cubierta solo por un velo de seda.</p></div></div>
+        </div>
+        <div>
+          <div class="src-row"><span class="when">Época imperial</span><div><h3>Higino <small>Fábula 92</small></h3><p>El resumen de mitógrafo, completo y poco poético: Eris excluida, la manzana lanzada desde la puerta, las tres promesas y el rapto. Añade que Paris se llevó también a dos esclavas de Helena, Etra y Tisadie.</p></div></div>
+          <div class="src-row"><span class="when">h. 1160–1287</span><div><h3>Benoît de Sainte-Maure y Guido delle Colonne <small>Roman de Troie · Historia destructionis Troiae</small></h3><p>Las versiones medievales convierten el juicio en un sueño de Paris, dormido en un rincón del bosque del Ida con su caballo atado a un árbol. Guido terminó su Historia en 1287, siguiendo a Benoît.</p></div></div>
+          <div class="src-row"><span class="when">1634</span><div><h3>Lope de Vega <small>Rimas de Tomé de Burguillos</small></h3><p>El soneto «Lo que hiciera Paris si viera a Juana». El poeta asegura que, ante su Juana, Paris no le daría una manzana, sino un cesto.</p></div></div>
+          <div class="src-row"><span class="when">1993</span><div><h3>Luis Alberto de Cuenca <small>«El juicio de Paris», en El hacha y la rosa</small></h3><p>El poema que abre el libro y con el que la ponente cerró la conferencia: tres diosas que se acicalan al amanecer, cada una con un espejo que le asegura ser la más hermosa.</p></div></div>
+        </div>
+      </div>
+      <blockquote class="verse">
+        Como si fuera cándida escultura,
+        <span class="gap">· · ·</span>
+        una manzana, pero todo un cesto.
+        <cite>Lope de Vega, «Lo que hiciera Paris si viera a Juana» · primer y último verso</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ DIOSAS ============ -->
+  <section id="diosas">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label"><span class="num">III</span>Cómo reconocerlas</p><h2>Las tres <em>diosas</em></h2></div>
+        <p>Los pintores las distinguen por sus atributos. Dumézil, en Mito y epopeya (1968), vio en sus promesas las tres funciones de las sociedades indoeuropeas: soberanía, guerra y fecundidad. Las tres imágenes son detalles del Rubens del Prado.</p>
+      </div>
+      <div class="goddesses">
+        <article class="gcard">
+          <div class="pic"><img src="img/g_hera.jpg" alt="Juno de espaldas, con diadema, junto al pavo real" loading="lazy"><div class="name"><span>Juno</span><h3>Hera</h3></div></div>
+          <div class="body">
+            <p class="promise">Reinar sobre toda la tierra y superar a todos en riqueza.</p>
+            <dl>
+              <div><dt>Atributos</dt><dd>Cetro, diadema y pavo real. En lecturas recientes, la granada, símbolo de fertilidad.</dd></div>
+              <div><dt>Función</dt><dd>Soberanía</dd></div>
+              <div><dt>En el cuadro</dt><dd>De espaldas, coronada, con el pavo real detrás.</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard">
+          <div class="pic"><img src="img/g_atenea.jpg" alt="Minerva desnuda con un velo, con su casco y su armadura a los pies" loading="lazy"><div class="name"><span>Minerva</span><h3>Atenea</h3></div></div>
+          <div class="body">
+            <p class="promise">Ser el más valiente de los mortales y diestro en todas las artes.</p>
+            <dl>
+              <div><dt>Atributos</dt><dd>Casco con penacho, égida con la Gorgona, lanza, escudo y olivo.</dd></div>
+              <div><dt>Función</dt><dd>Guerra</dd></div>
+              <div><dt>En el cuadro</dt><dd>Se quita el velo; casco y armadura quedan en el suelo.</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="gcard">
+          <div class="pic"><img src="img/g_afrodita.jpg" alt="Venus en el centro, coronada de flores, con Cupido agarrado a su pierna" loading="lazy"><div class="name"><span>Venus</span><h3>Afrodita</h3></div></div>
+          <div class="body">
+            <p class="promise">Helena, la más hermosa de las mujeres, como esposa.</p>
+            <dl>
+              <div><dt>Atributos</dt><dd>El ceñidor (Ilíada XIV), Eros o Cupido, paloma, rosa, concha y espejo.</dd></div>
+              <div><dt>Función</dt><dd>Fecundidad</dd></div>
+              <div><dt>En el cuadro</dt><dd>Un amorcillo la corona mientras Cupido se aferra a ella.</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+      <p class="gnote">Ninguna fuente clásica dice que Afrodita prometa el amor de Helena: promete a Helena. La ponente insistió en que Paris aspira a poseerla, no a ser correspondido. Es una interpretación que sigue abierta a debate.</p>
+    </div>
+  </section>
+
+  <!-- ============ JUEGO ============ -->
+  <section id="juez" style="padding-top:0">
+    <div class="wrap judge">
+      <figure class="judge-pic" style="margin:0">
+        <img src="img/g_paris.jpg" alt="Paris, sentado con la mano en el mentón, y Mercurio sosteniendo la manzana" loading="lazy">
+        <figcaption>Paris duda, con la mano en el mentón, mientras Mercurio le muestra la manzana. Rubens, h. 1638 (detalle).</figcaption>
+      </figure>
+      <div>
+        <p class="label"><span class="num">IV</span>El primer concurso de belleza</p>
+        <h2>Ahora el juez <em>eres tú</em></h2>
+        <p class="intro">Zeus no quiso elegir entre su esposa, su hija favorita y Afrodita, así que pasó la decisión a un mortal. Paris era hermoso y músico: en la cerámica griega aparece a menudo con la lira. Elige a quién das la manzana.</p>
+        <div class="choices" role="group" aria-label="Elige una diosa">
+          <button class="choice" type="button" id="c-hera" data-c="hera" aria-pressed="false"><b>Hera</b><span>Poder y riqueza</span></button>
+          <button class="choice" type="button" id="c-atenea" data-c="atenea" aria-pressed="false"><b>Atenea</b><span>Valor y saber</span></button>
+          <button class="choice" type="button" id="c-afrodita" data-c="afrodita" aria-pressed="false"><b>Afrodita</b><span>Helena</span></button>
+        </div>
+        <div class="verdict" id="verdict" aria-live="polite">
+          <p class="label">Veredicto</p>
+          <h3>La manzana sigue en tu mano</h3>
+          <p>La ponente lo llamó uno de los primeros sobornos de la historia. Las fuentes solo cuentan una de las tres salidas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="meander" role="presentation"></div>
+
+  <!-- ============ LÍNEA DEL TIEMPO ============ -->
+  <section id="tiempo">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label"><span class="num">V</span>A escala</p><h2>2.670 años <em>de juicios</em></h2></div>
+        <p>Cada punto es una obra o un texto de esta página, colocado en su fecha real sobre una escala lineal. El vacío entre la Antigüedad y el siglo XV y la aglomeración posterior también son información.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="tl-scroll" id="tlScroll" tabindex="0" aria-label="Línea del tiempo, desplazable en horizontal">
+        <svg id="tl" viewBox="0 0 1200 640" role="img" aria-label="Línea del tiempo de las obras y textos sobre el juicio de Paris, del 645 a. C. a 2026"></svg>
+      </div>
+      <p class="tl-hint">En el móvil, desliza la línea en horizontal.</p>
+      <div class="tl-legend"><span><i style="background:var(--clay)"></i>Imagen (cerámica, pintura, mosaico…)</span><span><i style="background:var(--gold)"></i>Texto o película</span></div>
+    </div>
+  </section>
+
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria">
+    <nav class="era-nav" aria-label="Épocas">
+      <div class="wrap" id="eraNav">
+        <a href="#grecia">Grecia</a><a href="#roma">Roma</a><a href="#medieval">Edad Media</a><a href="#renacimiento">Renacimiento</a><a href="#barroco">Barroco</a><a href="#xviii">S. XVIII</a><a href="#xix">S. XIX</a><a href="#xx">S. XX</a><a href="#xxi">S. XXI</a>
+      </div>
+    </nav>
+    <div class="wrap">
+      <div class="head" style="margin-top:clamp(2.5rem,6vw,4rem)">
+        <div><p class="label"><span class="num">VI</span>La colección</p><h2>La <em>galería</em></h2></div>
+        <p>La ponente colecciona juicios de Paris y trajo una décima parte de su colección. La estructura apenas cambia: Paris sentado, Hermes, las tres diosas y la manzana. Lo que cambia es la mirada. Pulsa una imagen para verla grande.</p>
+      </div>
+
+      <!-- GRECIA -->
+      <article class="era" id="grecia">
+        <div class="era-head"><span class="c">s. VII – V a. C.</span><h3>Reconocimiento divino</h3><p>Más que un concurso de belleza, la escena es una elección entre formas de poder y el anuncio de un destino heroico. Las diosas van vestidas y se reconocen por sus atributos.</p></div>
+        <div class="grid-w">
+          <figure class="work s5">
+            <button class="zoom" type="button" data-full="img/chigi.jpg" data-cap="Pintor de Chigi, olpe protocorintia, c. 650–640 a. C. Museo Nacional Etrusco de Villa Giulia, Roma. Foto: ArchaiOptix, CC BY-SA 4.0."><img src="img/chigi.jpg" alt="Jarra protocorintia decorada con frisos de figuras" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Pintor de Chigi</span>
+              <span class="t">Olpe Chigi</span>
+              <span class="m">c. 650–640 a. C. · Protocorintia · Villa Giulia, Roma (inv. 22679)</span>
+              <span class="d">La representación más antigua conocida del mito. La escena, muy dañada, está bajo el asa, y Paris lleva escrito su nombre homérico: Alexandros. Es casi dos siglos anterior a las cerámicas áticas del siglo V que mostró la ponente.</span>
+              <span class="cr">Foto: ArchaiOptix · CC BY-SA 4.0</span>
+            </figcaption>
+          </figure>
+          <figure class="work s7">
+            <button class="zoom" type="button" data-full="img/pyxis.jpg" data-cap="Atribuida al Pintor de Pentesilea, píxide ática de fondo blanco, c. 465–460 a. C. Metropolitan Museum of Art, Nueva York. Foto: Marie-Lan Nguyen, CC BY 2.5."><img src="img/pyxis.jpg" alt="Caja cilíndrica de cerámica blanca con figuras de Hera, Hermes y Paris" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Atribuida al Pintor de Pentesilea</span>
+              <span class="t">Píxide con el juicio de Paris</span>
+              <span class="m">c. 465–460 a. C. · Ática, fondo blanco · Metropolitan Museum, Nueva York (07.286.36)</span>
+              <span class="d">Una caja para cosméticos o joyas, un objeto del ámbito femenino, decorada con un concurso de belleza. A la ponente le interesa esa relación entre el tema y el uso del objeto. En este lado, Hera, Hermes y Paris sentado.</span>
+              <span class="cr">Foto: Marie-Lan Nguyen · CC BY 2.5</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="notes">
+          <div class="n"><span class="m">Cerámica ática · s. V a. C.</span><h4>La procesión de las diosas</h4><p>Hermes, con sandalias aladas, guía a Atenea con la égida, a Hera con el cetro y a Afrodita. Paris, sentado, suele tocar la lira: saber música le daba autoridad de juez.</p></div>
+          <div class="n"><span class="m">Finales del s. VII a. C.</span><h4>Peine de marfil de Esparta</h4><p>Del santuario de Artemis Orthia, hoy en el Museo Arqueológico Nacional de Atenas. Paris ya sostiene la manzana.</p><span class="tag">dato añadido</span></div>
+        </div>
+      </article>
+
+      <!-- ROMA -->
+      <article class="era" id="roma">
+        <div class="era-head"><span class="c">Mundo romano</span><h3>Afrodita se desnuda</h3><p>En el arte antiguo solo Afrodita aparece desnuda, y no siempre. Los soportes se multiplican: frescos, relieves y mosaicos.</p></div>
+        <div class="grid-w">
+          <figure class="work s4">
+            <button class="zoom" type="button" data-full="img/pompeii.jpg" data-cap="Fresco de la Casa de Júpiter, Pompeya, 45–79 d. C. Museo Arqueológico Nacional de Nápoles."><img src="img/pompeii.jpg" alt="Fresco con Hera, Afrodita semidesnuda, Atenea con escudo, Hermes y Paris sentado" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Pompeya, Casa de Júpiter</span>
+              <span class="t">Fragmento con el juicio de Paris</span>
+              <span class="m">45–79 d. C. · Fresco · Museo Arqueológico Nacional de Nápoles</span>
+              <span class="d">Afrodita, en el centro, abre su manto oscuro. Atenea lleva escudo y casco, Hermes el sombrero de viaje y Paris, sentado, el gorro frigio.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s8">
+            <button class="zoom" type="button" data-full="img/castulo.jpg" data-cap="Mosaico de los Amores, Cástulo (Linares, Jaén), finales del s. I – inicios del s. II d. C. Foto: Ángel M. Felicísimo, CC BY-SA 2.0."><img src="img/castulo.jpg" alt="Mosaico rectangular con dos medallones centrales y escenas de amorcillos" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Cástulo, Linares (Jaén)</span>
+              <span class="t">Mosaico de los Amores</span>
+              <span class="m">Finales del s. I – inicios del s. II d. C. · 11,65 × 5,75 m · Edificio D, excavado desde 2011</span>
+              <span class="d">Dos medallones centrales: Selene y Endimión, y el juicio de Paris. Paris, sentado entre su ganado, recibe la manzana de Mercurio. A la ponente le hacían gracia las caras de las diosas, serias y mirándose de reojo.</span>
+              <span class="cr">Foto: Ángel M. Felicísimo · CC BY-SA 2.0</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="notes">
+          <div class="n"><span class="m">Villar de Domingo García, Cuenca</span><h4>Mosaicos de Noheda</h4><p>La villa romana conserva grandes mosaicos figurativos de tema mitológico. Una de sus escenas narra el rapto de Helena por Paris; según la ponente, en la franja inferior se adivinan también las tres diosas y la llegada a Troya.</p></div>
+        </div>
+      </article>
+
+      <!-- EDAD MEDIA -->
+      <article class="era" id="medieval">
+        <div class="era-head"><span class="c">s. XII – XV</span><h3>Relato ilustrado</h3><p>La imagen suelta da paso a la historia en viñetas, sobre todo en manuscritos. Las fuentes ya no son griegas: son los romances de Troya, donde todo es un sueño.</p></div>
+        <div class="notes" style="margin-top:0">
+          <div class="n"><span class="m">Mediados del s. XV</span><h4>Plato con viñetas</h4><p>Según la ponente, una pieza de unos 40 cm de diámetro con escenas sucesivas: Paris hablando con Hermes, las diosas pasándose la manzana y la decisión final.</p></div>
+          <div class="n"><span class="m">s. XV</span><h4>Manuscritos</h4><p>Paris entrega la manzana mientras al fondo aparecen Helena y su rapto, la consecuencia directa de las promesas.</p></div>
+          <div class="n"><span class="m">Benoît · Guido delle Colonne</span><h4>El juicio como sueño</h4><p>Paris se duerme en el bosque y Mercurio le trae a las diosas. Esta variante pasará a Cranach y a otros pintores del siglo XVI.</p></div>
+        </div>
+      </article>
+
+      <!-- RENACIMIENTO -->
+      <article class="era" id="renacimiento">
+        <div class="era-head"><span class="c">s. XV – XVI</span><h3>El espectáculo del cuerpo</h3><p>Los artistas encuentran la excusa perfecta para pintar no uno sino tres desnudos femeninos, y empiezan a jugar con las posturas: de frente, de perfil, de espaldas.</p></div>
+        <div class="grid-w">
+          <figure class="work s5">
+            <button class="zoom" type="button" data-full="img/cranach.jpg" data-cap="Lucas Cranach el Viejo, El juicio de Paris, h. 1528. Metropolitan Museum of Art, Nueva York (CC0)."><img src="img/cranach.jpg" alt="Paris con armadura sentado bajo un árbol, Mercurio y tres diosas desnudas" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Lucas Cranach el Viejo</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1528 · Óleo sobre tabla · Metropolitan Museum, Nueva York</span>
+              <span class="d">Paris, con armadura de caballero, se ha dormido bajo un árbol junto a su caballo y Mercurio lo despierta. Cupido apunta desde arriba. Es la variante medieval del sueño. Cranach y su taller pintaron al menos una docena de versiones a partir de un grabado de 1508.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s7">
+            <button class="zoom" type="button" data-full="img/raimondi.jpg" data-cap="Marcantonio Raimondi, a partir de Rafael, El juicio de Paris, h. 1510–1520. Grabado. Metropolitan Museum of Art (CC0)."><img src="img/raimondi.jpg" alt="Grabado con Paris, las diosas, dioses fluviales y un carro celeste" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Marcantonio Raimondi, a partir de Rafael</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1510–1520 · Grabado · Metropolitan Museum, Nueva York</span>
+              <span class="d">El grabado difundió por toda Europa el juicio como gran escena de desnudos. El grupo de dioses fluviales de la esquina derecha inspiró, tres siglos después, el Almuerzo sobre la hierba de Manet.</span>
+              <span class="cr">Dato añadido</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="notes">
+          <div class="n"><span class="m">s. XVI</span><h4>Cupido sobre la escena</h4><p>El hijo de Venus dispara al corazón de Paris. Solo Afrodita está desnuda; Hera va vestida de matrona y Minerva lleva un tocado fantasioso en lugar de casco.</p></div>
+          <div class="n"><span class="m">Real Armería, Madrid</span><h4>Una rodela</h4><p>Según la ponente, un escudo de parada forjado en Eugui (Navarra), con un juicio de Paris minimalista en el centro.</p></div>
+          <div class="n"><span class="m">Finales del s. XVI</span><h4>El ceñidor</h4><p>Venus, ya coronada, conserva su ceñidor, donde según la Ilíada guardaba sus artes de seducción. Hera y Minerva se visten con gesto de desprecio.</p></div>
+          <div class="n"><span class="m">s. XV – XVI</span><h4>Un tintero</h4><p>Un tintero de la época reproduce el juicio como sueño de Paris.</p></div>
+        </div>
+      </article>
+
+      <!-- BARROCO -->
+      <article class="era" id="barroco">
+        <div class="era-head"><span class="c">s. XVII</span><h3>Teatralidad y corte</h3><p>Sensualidad, exceso y cultura cortesana. Las diosas muestran cada una una parte distinta de la anatomía.</p></div>
+        <div class="grid-w">
+          <figure class="work s7">
+            <button class="zoom" type="button" data-full="img/rubensPrado.jpg" data-cap="Pedro Pablo Rubens, El juicio de Paris, h. 1638. Museo del Prado."><img src="img/rubensPrado.jpg" alt="Rubens: Paris y Mercurio a la izquierda y las tres diosas a la derecha" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Pedro Pablo Rubens</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1638 · Óleo sobre lienzo · 199 × 381 cm · Museo del Prado (P001669)</span>
+              <span class="d">Encargo personal de Felipe IV, pintado poco antes de la muerte de Rubens. Cuenta la historia entera: Paris duda con la mano en el mentón, el pavo real de Hera, la armadura de Atenea en el suelo y Venus coronada por un amorcillo. Hay otra versión de Rubens en el Prado, de hacia 1606, en la que unos amorcillos desnudan a las diosas.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s5">
+            <button class="zoom" type="button" data-full="img/rubensNG.jpg" data-cap="Pedro Pablo Rubens, El juicio de Paris, probablemente 1632–1635. National Gallery, Londres."><img src="img/rubensNG.jpg" alt="Rubens: tres diosas a la izquierda, Paris y Mercurio a la derecha" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Pedro Pablo Rubens</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">Probablemente 1632–1635 · National Gallery, Londres</span>
+              <span class="d">Sigue a Luciano. Paris, con aspecto de pastor y su perro, está a la derecha con Mercurio. Minerva aparece junto a su escudo con la Gorgona, Venus en el centro y Juno de espaldas con el pavo real. En el cielo, la furia Alecto anuncia la guerra. Los cambios del lienzo muestran que Rubens pintó primero el momento anterior, cuando Mercurio ordena a las diosas desnudarse.</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="notes">
+          <div class="n"><span class="m">1634</span><h4>Lope y su Juana</h4><p>«Lo que hiciera Paris si viera a Juana», de las Rimas de Tomé de Burguillos. Para la ponente, todo un gesto de amor.</p></div>
+          <div class="n"><span class="m">s. XVII</span><h4>El arrepentimiento</h4><p>Un lienzo en el que, según la ponente, se distingue la primera postura de Afrodita, corregida después por el pintor.</p></div>
+        </div>
+      </article>
+
+      <!-- XVIII -->
+      <article class="era" id="xviii">
+        <div class="era-head"><span class="c">s. XVIII</span><h3>Refinamiento</h3><p>Más delicadeza y nuevas composiciones. El tema pasa con fuerza a las artes suntuarias, como la porcelana, donde cabe la escena entera: el perro pastor, el carnero y Atenea con su escudo.</p></div>
+        <div class="grid-w">
+          <figure class="work s4">
+            <button class="zoom" type="button" data-full="img/watteau.jpg" data-cap="Antoine Watteau, El juicio de Paris, h. 1718–1721. Museo del Louvre."><img src="img/watteau.jpg" alt="Venus de espaldas retirándose el velo ante Paris" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Antoine Watteau</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1718–1721 · Óleo sobre tabla · 47 × 31 cm · Louvre (M.I. 1126)</span>
+              <span class="d">Un formato vertical y diminuto. Venus, de espaldas al espectador, se retira el velo ante Paris.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s4">
+            <button class="zoom" type="button" data-full="img/mengs.jpg" data-cap="Anton Raphael Mengs, El juicio de Paris, 1757. Museo del Hermitage, San Petersburgo."><img src="img/mengs.jpg" alt="Paris sentado ofrece la manzana a Venus, con Cupido; detrás, Hera y Atenea" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Anton Raphael Mengs</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">1757 · 226 × 295,5 cm · Hermitage, San Petersburgo</span>
+              <span class="d">Neoclasicismo temprano. Abajo a la izquierda aparece un dios fluvial recostado sobre su cántaro, que la ponente identificó con el Escamandro de Troya. Paris se rinde ante Venus mientras Juno, con el pavo real a sus pies, lo mira con rencor.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s4">
+            <button class="zoom" type="button" data-full="img/kauffman.jpg" data-cap="Angelica Kauffman, El juicio de Paris, h. 1781. Museo de Arte de Ponce, Puerto Rico."><img src="img/kauffman.jpg" alt="Óvalo: Paris entrega la manzana a Venus; Minerva sentada a la derecha" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Angelica Kauffman</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1781 · 80,3 × 100,6 cm · Museo de Arte de Ponce, Puerto Rico</span>
+              <span class="d">Un óvalo con las diosas vestidas: Paris entrega la manzana a Venus, acompañada de Cupido, mientras Minerva, con casco, espera sentada.</span>
+              <span class="cr">Dato añadido</span>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- XIX -->
+      <article class="era" id="xix">
+        <div class="era-head"><span class="c">s. XIX</span><h3>El soborno y la pasarela</h3><p>Romanticismo, academicismo y crisis del ideal clásico. La gestualidad de las promesas pasa al primer plano y el juicio empieza a parecerse a un certamen de belleza moderno.</p></div>
+        <div class="grid-w">
+          <figure class="work s12">
+            <button class="zoom" type="button" data-full="img/klinger.jpg" data-cap="Max Klinger, El juicio de Paris, 1885–1887. Belvedere, Viena. Foto: Belvedere, CC BY-SA 4.0."><img src="img/klinger.jpg" alt="Pintura panorámica con marco escultórico: Paris sentado y tres diosas en un paisaje de costa" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Max Klinger</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">1885–1887 · Óleo sobre lienzo con marco de madera y yeso · c. 3,7 × 7,5 m · Belvedere, Viena (en préstamo al Museum der bildenden Künste de Leipzig)</span>
+              <span class="d">Pintura y escultura en una sola pieza. La ponente lo vio como una pasarela de concurso de belleza actual: Paris sentado y las diosas exhibiéndose ante él.</span>
+              <span class="cr">Foto: Belvedere · CC BY-SA 4.0</span>
+            </figcaption>
+          </figure>
+          <figure class="work s5">
+            <button class="zoom" type="button" data-full="img/solomon.jpg" data-cap="Solomon Joseph Solomon, El juicio de Paris, 1891. Colección particular."><img src="img/solomon.jpg" alt="Venus desnuda en pie, Atenea sentada con escudo y Hera, en un jardín" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Solomon Joseph Solomon</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">1891 · Óleo sobre lienzo · Royal Academy, 1891 · Colección particular</span>
+              <span class="d">No hay Paris, porque Paris somos nosotros. La manzana está en el suelo y Venus, segura de su triunfo; las miradas de Atenea y Hera le parecían a la ponente más de admiración que de envidia.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s7">
+            <button class="zoom" type="button" data-full="img/cezanne.jpg" data-cap="Paul Cézanne, El juicio de Paris, h. 1862–1864. Colección particular."><img src="img/cezanne.jpg" alt="Cézanne: figuras desnudas en un paisaje de colores intensos" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Paul Cézanne</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1862–1864 · Óleo sobre lienzo · 15 × 21 cm · Colección particular</span>
+              <span class="d">Una obra de juventud, del tamaño de una cuartilla. Las diosas, casi sin rostro, transmiten desdén hacia quien las juzga.</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="notes">
+          <div class="n"><span class="m">Academicismo</span><h4>Tres promesas en gestos</h4><p>Hera señala una ciudad (el poder sobre Asia), Atenea el campo de batalla y Venus cambia de tercio.</p></div>
+          <div class="n"><span class="m">s. XIX</span><h4>El gorro frigio</h4><p>El gorro oriental de Paris es también el gorro de la Revolución francesa, y alguna versión juega con esa lectura.</p></div>
+          <div class="n"><span class="m">s. XIX</span><h4>Rivalidad femenina</h4><p>Paris de pie y las diosas midiéndose entre sí. La ponente preguntó si la belleza sigue siendo la cualidad femenina suprema.</p><span class="tag">pregunta abierta</span></div>
+          <div class="n"><span class="m">Revista, finales del s. XIX</span><h4>Sátira política</h4><p>No aparece Paris. Una figura femenina coronada, la monarquía, sostiene la manzana.</p></div>
+          <div class="n"><span class="m">Cambio de siglo</span><h4>Postales infantiles</h4><p>Un niño reparte su almuerzo entre tres niñas, y le da la mejor parte a la rubia. La ponente reflexionó sobre el canon de la rubia Helena.</p></div>
+          <div class="n"><span class="m">Finales del s. XIX</span><h4>Estética medieval</h4><p>Paris en un escabel, Hermes detrás. La diosa del espejo tiene que ser Venus.</p></div>
+        </div>
+      </article>
+
+      <!-- XX -->
+      <article class="era" id="xx">
+        <div class="era-head"><span class="c">s. XX</span><h3>La crisis de la mirada</h3><p>Las vanguardias fragmentan la figura y el ideal. Empieza a cuestionarse quién mira y quién es mirada.</p></div>
+        <div class="grid-w">
+          <figure class="work s7">
+            <button class="zoom" type="button" data-full="img/simonet.jpg" data-cap="Enrique Simonet, El juicio de Paris, 1904. Museo de Málaga."><img src="img/simonet.jpg" alt="Atenea y Hera vestidas, Afrodita desnuda, Eros y Paris con piel de animal" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Enrique Simonet</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">1904 · Óleo sobre lienzo · 215 × 331 cm · Museo de Málaga</span>
+              <span class="d">De izquierda a derecha: Atenea, Hera, Afrodita, Eros y Paris. El pavo real despliega la cola y Paris viste piel de animal, un exotismo que recuerda que el Ida está en Asia Menor. Según la ponente, Atenea, avergonzada, no llega a desnudarse del todo y Hera le pasa la mano por el hombro.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s5">
+            <button class="zoom" type="button" data-full="img/renoir.jpg" data-cap="Pierre-Auguste Renoir, El juicio de Paris, h. 1908–1910. Hiroshima Museum of Art."><img src="img/renoir.jpg" alt="Renoir: tres diosas desnudas de formas rotundas y Paris arrodillado" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Pierre-Auguste Renoir</span>
+              <span class="t">El juicio de Paris</span>
+              <span class="m">h. 1908–1910 · 73 × 92,5 cm · Hiroshima Museum of Art</span>
+              <span class="d">Una versión casi académica, con Hermes reconocible. En 1914 Renoir, con artritis, dirigió las manos del escultor Richard Guino para hacer un relieve del mismo tema.</span>
+            </figcaption>
+          </figure>
+          <figure class="work s12">
+            <button class="zoom" type="button" data-full="img/delaunay.jpg" data-cap="Robert Delaunay, La ciudad de París, 1910–1912. Centre Pompidou, París."><img src="img/delaunay.jpg" alt="Lienzo cubista con tres desnudos femeninos fragmentados entre vistas de París y la Torre Eiffel" loading="lazy"></button>
+            <figcaption class="cartela">
+              <span class="a">Robert Delaunay</span>
+              <span class="t">La ciudad de París</span>
+              <span class="m">1910–1912 · Óleo sobre lienzo · 267 × 406 cm · Centre Pompidou</span>
+              <span class="d">Tres Gracias fragmentadas junto a la Torre Eiffel. La ponente lo leyó como un juicio de «París», donde el juez es la propia ciudad. El Pompidou relaciona sus rostros con Las señoritas de Avignon.</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="notes">
+          <div class="n"><span class="m">1907 · MoMA</span><h4>Picasso, Las señoritas de Avignon</h4><p>No se titula así, pero la ponente lo lee como un juicio de Paris: una figura sentada, otra de pie como un Hermes y mujeres desnudas mostrándose.</p><span class="tag">hipótesis de la ponente</span></div>
+          <div class="n"><span class="m">André Lhote</span><h4>Dos versiones</h4><p>La primera sigue la tradición, con el pavo real. La segunda abre una línea colonial que la ponente describió como turismo sexual.</p></div>
+          <div class="n"><span class="m">Años veinte</span><h4>Paris con turbante</h4><p>Ropas exóticas, Minerva calzándose las grebas tras la derrota y una Venus displicente que ya conocía el resultado.</p></div>
+          <div class="n"><span class="m">Salvador Dalí</span><h4>Diosas gigantes</h4><p>Dalí volvió varias veces al tema; por ejemplo, en un grabado de su Suite Mitología (1963). La ponente leyó sus diosas enormes como poderío femenino, aunque los mitógrafos ya dicen que los dioses miden más de dos metros.</p></div>
+          <div class="n"><span class="m">s. XX</span><h4>Una mujer triplicada</h4><p>La misma mujer tres veces, con la manzana: el premio se lo llevan todas. Encaja con la lectura de las diosas como tres facetas de una sola: la que lucha, la que seduce y la que gobierna.</p></div>
+          <div class="n"><span class="m">Finales del s. XX</span><h4>Juicio con Barbies</h4><p>Miss Arte con condecoración (Minerva), Hera con las llaves de una ciudad y, en el centro, una muñeca hinchable con la cara de Marilyn Monroe. Es una parodia del soborno.</p></div>
+          <div class="n"><span class="m">Finales del s. XX</span><h4>Por fin, Helena</h4><p>Una fotografía con Paris, las diosas y Helena. Ella fue el objeto de la disputa y cargó con la culpa desde la Antigüedad, pero casi nunca aparece en las imágenes.</p></div>
+          <div class="n"><span class="m">1992</span><h4>Hung Liu</h4><p>La ponente describió a una artista china con una gran colección de fotografías del XIX, muchas de prostitutas, que dice dar vida a las olvidadas. La descripción coincide con Hung Liu.</p><span class="tag">atribución probable</span></div>
+          <div class="n"><span class="m">1964 · Brooklyn Museum</span><h4>Jack Levine</h4><p>Volvió al juicio, entre otras obras en un aguafuerte de 1964. La ponente lo situó en la línea que une el juicio y la prostitución.</p></div>
+          <div class="n"><span class="m">1998 · Fotomontaje</span><h4>El juicio a Paris</h4><p>Por fin es Paris quien está desnudo y avergonzado bajo la mirada de tres diosas de tres razas distintas.</p><span class="tag">inversión</span></div>
+        </div>
+      </article>
+
+      <!-- XXI -->
+      <article class="era" id="xxi">
+        <div class="era-head"><span class="c">s. XXI</span><h3>Apropiaciones</h3><p>Feminismo, cultura digital, cine, publicidad y redes. Paris pierde autoridad y a veces parece no enterarse de nada. Estas obras siguen protegidas por derechos de autor, así que aquí van descritas y no reproducidas.</p></div>
+        <div class="notes" style="margin-top:0">
+          <div class="n"><span class="m">Una de las favoritas de la ponente</span><h4>Solo con atributos</h4><p>Sin cuerpos: Hermes reconocible por el caduceo, Paris por el gorro y la manzana en las rodillas. Hera con la granada, Atenea con una aceitera en lugar de casco (el olivo fue su regalo a Atenas), Afrodita con la rosa y la concha, y Cupido con los ojos cerrados: el amor ciego.</p></div>
+          <div class="n"><span class="m">Cerámica contemporánea</span><h4>Venus con tablet</h4><p>Minerva con casco y lanza, Juno con corona y un pavo cuya cola se funde con el vestido, y Venus con una paloma y una tablet en la que muestra a Helena. Paris parece no enterarse de nada.</p></div>
+          <div class="n"><span class="m">Recreación de Rubens</span><h4>Helena metida en el lío</h4><p>El mismo lienzo del Prado con un giro: aparece Helena, que no sabe lo que se le viene encima. Paris, con su piel de animal, roza lo ridículo.</p></div>
+          <div class="n"><span class="m">En clave de cine</span><h4>Gilda, Lara Croft y la aspiradora</h4><p>Juno como ama de casa de los años cincuenta con aspiradora, Venus como Gilda y Minerva como Lara Croft. En otra versión, Venus es la Marilyn de La tentación vive arriba.</p></div>
+          <div class="n"><span class="m">Kovic</span><h4>Atributos modernizados</h4><p>Minerva con máscara de gas, Juno con los ojos del pavo y Afrodita con la manzana en la cabeza. De un huevo sale una mano con las uñas pintadas: Helena, nacida del huevo de Leda.</p></div>
+          <div class="n"><span class="m">Publicidad</span><h4>Un anuncio de coche</h4><p>Un tríptico que mezcla la escena mítica con el lenguaje de la publicidad.</p></div>
+          <div class="n"><span class="m">2013 · 2021</span><h4>Calle y agua</h4><p>Un espectáculo callejero en 2013 y una fotografía submarina en 2021 recrean el juicio.</p></div>
+          <div class="n"><span class="m">Redes sociales</span><h4>Del Ida al algoritmo</h4><p>Diosas galácticas, versiones casi Disney y el juicio en Instagram. Una viñeta final convierte a Paris en Narciso: pasa de las diosas porque el más guapo es él.</p></div>
+          <div class="n"><span class="m">Cine · 1987</span><h4>Saint Seiya: la diosa Eris</h4><p>La primera película de Los Caballeros del Zodiaco tiene a Eris como villana y usa una manzana dorada para robar la energía de Atenea.</p><span class="tag">dato añadido</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ CONCLUSIÓN ============ -->
+  <section class="finale" id="conclusion">
+    <div class="finale-bg" aria-hidden="true"><img src="img/simonet.jpg" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <p class="label"><span class="num">VII</span>Conclusión</p>
+      <blockquote style="margin-top:1.2rem">Durante siglos miramos con los ojos de Paris. Ahora <em>las diosas nos miran</em> a nosotros.</blockquote>
+      <div class="finale-grid">
+        <div><h3>La mirada invertida</h3><p>En las propuestas recientes las mujeres miran de frente, ocupan el espacio con seguridad y rechazan ser objetos pasivos. Mirarlas deja de ser cómodo: ellas también nos observan.</p></div>
+        <div><h3>Helena recuperada</h3><p>Helena empieza a aparecer y a valorarse, junto a cánones distintos al de la rubia delgada de ojos azules.</p></div>
+        <div><h3>Lupita Nyong'o</h3><p>La ponente reivindicó una Venus negra y a la Helena de La Odisea de Christopher Nolan (2026), interpretada por Lupita Nyong'o, que también hace de Clitemnestra.</p></div>
+        <div><h3>Un poema para acabar</h3><p>Luis Alberto de Cuenca lleva el juicio a lo cotidiano en el poema que abre El hacha y la rosa (1993).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VERIFICACIÓN ============ -->
+  <section id="verificacion">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label"><span class="num">VIII</span>Comprobado</p><h2>Notas de <em>verificación</em></h2></div>
+        <p>La transcripción automática deformaba nombres y algunos datos. Esto es lo que cambia al contrastarlos con las fuentes.</p>
+      </div>
+      <div class="checks">
+        <div class="check"><span class="k">Matiz</span><p><b>La imagen más antigua no es ática.</b> Es la olpe Chigi, protocorintia, de hacia 650–640 a. C. Los pintores de vasos ya trataban el tema en el siglo VI, antes que la cerámica ática del siglo V que mostró la ponente.</p></div>
+        <div class="check"><span class="k">Matiz</span><p><b>Luciano es del siglo II d. C.</b> Escribe en época imperial romana, no helenística. La manzana aparece en él y en Higino y el Pseudo-Apolodoro.</p></div>
+        <div class="check"><span class="k">Matiz</span><p><b>Las manzanas nórdicas de Iðunn</b> mantienen jóvenes a los dioses, no a los héroes.</p></div>
+        <div class="check"><span class="k">Matiz</span><p><b>El mural de Klinger mide c. 3,7 × 7,5 m</b> con su marco, según Wikidata. En la charla se habló de unos 4 × 8 m.</p></div>
+        <div class="check"><span class="k">Matiz</span><p><b>El monte Ida (Kaz Dağı) alcanza unos 1.770 m.</b> En él ocurren también el rapto de Ganimedes y la unión de Afrodita con Anquises, y desde su cima los dioses miran la guerra de Troya.</p></div>
+        <div class="check"><span class="k">Matiz</span><p><b>Rubens del Prado:</b> el museo lo da como encargo de Felipe IV, h. 1638, de 199 × 381 cm.</p></div>
+        <div class="check"><span class="k ok">Correcto</span><p><b>Los nombres corregidos de la transcripción</b> son Temis, Higino, Proclo, Catulo, Apuleyo, Agelao, Noheda, Cástulo, Guido delle Colonne, Cranach, Klinger, Solomon, Simonet, Delaunay, Dumézil, Lupita Nyong'o y Luis Alberto de Cuenca.</p></div>
+        <div class="check"><span class="k ok">Correcto</span><p><b>El soneto es de Lope de Vega</b>, bajo el heterónimo de Tomé de Burguillos (1634): «Lo que hiciera Paris si viera a Juana».</p></div>
+      </div>
+      <div class="unv">
+        <h3>Citado en la conferencia, sin verificar</h3>
+        <p>No he podido identificar con seguridad estas obras ni a sus autores a partir de la grabación: el plato del siglo XV, la rodela de Eugui, el tintero, el lienzo del arrepentimiento, la porcelana dieciochesca, las versiones de Lhote, la obra de Araújo, el bronce de un autor ucraniano, las obras de Rafael Zabaleta y Julio Castro de la Gándara, el fotomontaje de 1998, el juicio con Barbies, la cerámica de 2006, la serie de Kovic y la artista de 1925. En la página aparecen como descripciones de la ponente, sin fechas ni museos inventados.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>Fuentes consultadas</h3>
+    <ul class="refs">
+      <li><a href="https://theoi.com/Olympios/JudgementParis.html">Theoi: textos antiguos del juicio de Paris (Proclo, Apolodoro, Apuleyo, Higino)</a></li>
+      <li><a href="https://ogcma.byu.edu/ParisJudgmentANCIENT_Hyginus.htm">Higino, Fábula 92 (OGCMA, BYU)</a></li>
+      <li><a href="https://sacred-texts.com/cla/luc/wl1/wl127.htm">Luciano, El juicio de Paris (trad. Fowler)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Judgement_of_Paris">Wikipedia: Judgement of Paris</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Chigi_vase">Wikipedia: Chigi vase</a></li>
+      <li><a href="https://metmuseum.org/toah/works-of-art/07.286.36">The Met: píxide del Pintor de Pentesilea</a></li>
+      <li><a href="https://lucascranach.org/US_MMANY_28-221">Cranach Digital Archive: El juicio de Paris (Met)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Historia_destructionis_Troiae">Wikipedia: Historia destructionis Troiae</a></li>
+      <li><a href="https://www.museodelprado.es/en/the-collection/art-work/the-judgement-of-paris/f8b061e1-8248-42ae-81f8-6acb5b1d5a0a">Museo del Prado: Rubens, El juicio de Paris</a></li>
+      <li><a href="https://www.museodelprado.es/en/the-collection/art-work/marriage-of-peleus-and-thetis/1e6c1c65-360e-43fb-beb5-fe1f655c6af0">Museo del Prado: Jordaens, Las bodas de Tetis y Peleo</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/The_Judgement_of_Paris_(Rubens)">Wikipedia: The Judgement of Paris (Rubens)</a></li>
+      <li><a href="https://link.springer.com/10.1186/s40494-021-00483-7">Heritage Science: el mosaico de Cástulo</a></li>
+      <li><a href="https://cultura.castillalamancha.es/sites/default/files/2021-05/Villa%20Noheda%20.pdf">Junta de Castilla-La Mancha: Villa de Noheda</a></li>
+      <li><a href="https://utpictura18.univ-amu.fr/en/notice/16301-the-judgment-of-paris-anton-raphael-mengs">Utpictura18: Mengs, El juicio de Paris</a></li>
+      <li><a href="https://emuseum.museoarteponce.org/objects/3418/the-judgment-of-paris">Museo de Arte de Ponce: Kauffman</a></li>
+      <li><a href="https://www.l-iz.de/kultur/ausstellungen/2023/06/max-klinger-das-urteil-des-paris-restaurierungsprojekt-mdbk-540762">L-IZ: restauración del Klinger en Leipzig</a></li>
+      <li><a href="https://victorianweb.org/painting/solomonsj/paintings/3.html">Victorian Web: Solomon J. Solomon</a></li>
+      <li><a href="https://www.cezannecatalogue.com/catalogue/entry.php?id=105">Catálogo razonado de Cézanne</a></li>
+      <li><a href="https://eclecticlight.co/2019/12/10/work-in-progress-renoirs-judgement-of-paris/">Eclectic Light: el juicio de Renoir</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/El_Juicio_de_Paris_(Simonet)">Wikipedia: El juicio de Paris (Simonet)</a></li>
+      <li><a href="https://www.centrepompidou.fr/en/ressources/oeuvre/cynbx8d">Centre Pompidou: Delaunay, La Ville de Paris</a></li>
+      <li><a href="https://classical-inquiries.chs.harvard.edu/comments-on-comparative-mythology-3-about-trifunctionalism-and-the-judgment-of-paris">Nagy (CHS): Dumézil y el juicio de Paris</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Mount_Ida_(Turkey)">Wikipedia: Mount Ida (Turkey)</a></li>
+      <li><a href="https://www.biblioteca-antologica.org/es/wp-content/uploads/2019/08/LOPE-DE-VEGA-Rimas-humanas-.pdf">Lope de Vega, Rimas de Tomé de Burguillos</a></li>
+      <li><a href="https://www.reinodecordelia.es/wordpress/wp-content/uploads/2020/06/Primeras-pa%CC%81ginas-El-Hacha-y-la-rosa.pdf">Reino de Cordelia: El hacha y la rosa</a></li>
+      <li><a href="https://www.brooklynmuseum.org/opencollection/objects/156245">Brooklyn Museum: Jack Levine, Judgement of Paris</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Hung_Liu">Wikipedia: Hung Liu</a></li>
+      <li><a href="https://slashfilm.com/2170671/lupita-nyongo-the-odyssey-helen-of-troy-confirmation-twist/">/Film: Lupita Nyong'o como Helena en La Odisea</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Saint_Seiya:_The_Movie">Wikipedia: Saint Seiya: The Movie (1987)</a></li>
+    </ul>
+    <p class="fine">Imágenes de Wikimedia Commons. Las pinturas son de dominio público; las de Cranach y Raimondi proceden del Metropolitan Museum (CC0). Las fotos con licencia propia llevan su crédito en la cartela: ArchaiOptix (CC BY-SA 4.0), Marie-Lan Nguyen (CC BY 2.5), Ángel M. Felicísimo (CC BY-SA 2.0) y Belvedere (CC BY-SA 4.0). Notas de conferencia reconstruidas a partir de una transcripción automática.</p>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Imagen ampliada">
+  <button class="x" type="button" id="lbClose">Cerrar</button>
+  <figure><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption></figure>
+</dialog>
+
+<script>
+(function(){
+  /* ---------- Juego ---------- */
+  var V = {
+    hera:{t:"Reinas sobre toda la tierra", p:["Ninguna fuente narra este final. Con la lógica del mito, Atenea y Afrodita serían ahora las ofendidas.","Pero Zeus quería una guerra, y alguien tenía que salir perdiendo."]},
+    atenea:{t:"Eres el más valiente de los mortales", p:["Ninguna fuente narra este final. Hera y Afrodita serían las rivales resentidas.","En la pintura del siglo XIX esta promesa se pinta como un gesto hacia el campo de batalla."]},
+    afrodita:{t:"Eliges a Helena", p:["Es la versión de todas las fuentes. Paris se lleva a Helena del palacio de Menelao, Hera y Atenea se vuelven contra Troya y empieza la guerra que Zeus había planeado con Temis.","Ninguna fuente explica por qué prefirió esta promesa. Y Helena, que no eligió nada, cargó con la culpa."]}
+  };
+  var choices = document.querySelectorAll(".choice"), out = document.getElementById("verdict");
+  choices.forEach(function(b){
+    b.addEventListener("click", function(){
+      var v = V[b.dataset.c];
+      choices.forEach(function(x){ x.setAttribute("aria-pressed", x===b ? "true" : "false"); });
+      out.innerHTML = '<p class="label">Veredicto</p><h3></h3><p></p><p></p>';
+      out.querySelector("h3").textContent = v.t;
+      var ps = out.querySelectorAll("p"); ps[1].textContent = v.p[0]; ps[2].textContent = v.p[1];
+    });
+  });
+
+  /* ---------- Línea del tiempo ---------- */
+  var EV = [
+    [-645,"Olpe Chigi","i"],[-610,"Peine de Esparta","i"],[-462,"Píxide (Met)","i"],[-57,"Catulo, 64","t"],
+    [62,"Fresco de Pompeya","i"],[100,"Mosaico de Cástulo","i"],[170,"Luciano y Apuleyo","t"],
+    [1165,"Benoît, Roman de Troie","t"],[1287,"Guido delle Colonne","t"],[1515,"Raimondi","i"],[1528,"Cranach","i"],
+    [1634,"Lope de Vega","t"],[1638,"Rubens (Prado)","i"],[1720,"Watteau","i"],[1757,"Mengs","i"],[1781,"Kauffman","i"],
+    [1806,"Turner","i"],[1863,"Cézanne","i"],[1886,"Klinger","i"],[1891,"Solomon","i"],[1904,"Simonet","i"],
+    [1907,"Picasso","i"],[1909,"Renoir","i"],[1911,"Delaunay","i"],[1963,"Dalí","i"],[1964,"Levine","i"],
+    [1987,"Saint Seiya","t"],[1993,"L. A. de Cuenca","t"],[2026,"Nolan, La Odisea","t"]
+  ];
+  var svg = document.getElementById("tl"), NS = "http://www.w3.org/2000/svg";
+  var x0 = 40, x1 = 1160;
+  function el(n, a, txt){ var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; svg.appendChild(e); return e; }
+  function yr(v){ return v < 0 ? (-v) + " a. C." : String(v); }
+  var css = getComputedStyle(document.documentElement);
+  var C = { clay: css.getPropertyValue("--clay").trim(), gold: css.getPropertyValue("--gold").trim(), bone: css.getPropertyValue("--bone").trim(), muted: css.getPropertyValue("--muted").trim(), line: "rgba(238,228,212,.22)" };
+  function panel(y, A, B, step, evs, lanes, gap, title){
+    function X(v){ return x0 + (v - A) / (B - A) * (x1 - x0); }
+    el("text", {x:x0, y:y - lanes.up * 36 - 30, fill:C.clay, "font-size":12, "letter-spacing":"2"}, title);
+    el("line", {x1:x0, x2:x1, y1:y, y2:y, stroke:C.line, "stroke-width":1.5});
+    for (var t = Math.ceil(A / step) * step; t <= B; t += step){
+      var tx = X(t);
+      el("line", {x1:tx, x2:tx, y1:y-5, y2:y+5, stroke:C.line});
+      el("text", {x:tx, y:y+20, "text-anchor":"middle", fill:C.muted, "font-size":11}, yr(t));
+    }
+    var L = [], k; for (k = 1; k <= lanes.up; k++) L.push(-k * 36); for (k = 1; k <= lanes.down; k++) L.push(14 + k * 36);
+    var last = {};
+    evs.forEach(function(e){
+      var ex = X(e[0]), col = e[2] === "i" ? C.clay : C.gold, lane = null;
+      for (var i = 0; i < L.length; i++){ if (last[L[i]] == null || ex - last[L[i]] > gap){ lane = L[i]; break; } }
+      if (lane === null) lane = L[L.length - 1];
+      last[lane] = ex;
+      var ly = y + lane;
+      el("line", {x1:ex, x2:ex, y1: lane < 0 ? y-6 : y+6, y2: lane < 0 ? ly+5 : ly-12, stroke:col, "stroke-opacity":.5});
+      var c = el("circle", {cx:ex, cy:y, r:5, fill:col, stroke:"#100C09", "stroke-width":1.5});
+      var ti = document.createElementNS(NS, "title"); ti.textContent = e[1] + " · " + yr(e[0]); c.appendChild(ti);
+      var end = ex > x1 - 120, tx = end ? ex - 4 : ex + 4, anc = end ? "end" : "start";
+      el("text", {x:tx, y:ly, fill:C.bone, "font-size":12.5, "text-anchor":anc}, e[1]);
+      el("text", {x:tx, y:ly+13, fill:C.muted, "font-size":10.5, "text-anchor":anc}, yr(e[0]));
+    });
+    return X;
+  }
+  // Panel 1: todo el periodo a escala; se rotulan las obras anteriores a 1500
+  var XA = panel(190, -700, 2050, 200, EV.filter(function(e){ return e[0] < 1500; }), {up:4, down:0}, 96, "TODO EL PERIODO · 700 a. C. – 2050");
+  EV.filter(function(e){ return e[0] >= 1500; }).forEach(function(e){
+    el("circle", {cx:XA(e[0]), cy:190, r:4, fill: e[2] === "i" ? C.clay : C.gold, stroke:"#100C09", "stroke-width":1});
+  });
+  el("text", {x:XA(670), y:178, "text-anchor":"middle", fill:C.muted, "font-size":12, "font-style":"italic"}, "casi mil años sin obras en esta página");
+  // Conector hacia el panel ampliado
+  var a1 = XA(1490), a2 = XA(2040);
+  el("path", {d:"M"+a1+" 198 V 236 M"+a2+" 198 V 236 M"+a1+" 236 H "+a2, stroke:C.muted, fill:"none", "stroke-dasharray":"3 4"});
+  el("path", {d:"M"+a1+" 236 L "+x0+" 298 M"+a2+" 236 L "+x1+" 298", stroke:C.muted, fill:"none", "stroke-dasharray":"3 4", "stroke-opacity":.6});
+  el("text", {x:(a1+a2)/2, y:252, "text-anchor":"middle", fill:C.muted, "font-size":11}, "ampliado abajo");
+  // Panel 2: 1490–2040 ampliado
+  panel(490, 1490, 2040, 50, EV.filter(function(e){ return e[0] >= 1500; }), {up:4, down:3}, 100, "AMPLIACIÓN · 1490 – 2040");
+
+  /* ---------- Lightbox ---------- */
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbCap = document.getElementById("lbCap");
+  document.querySelectorAll("button.zoom").forEach(function(b){
+    b.addEventListener("click", function(){
+      lbImg.src = b.dataset.full; lbImg.alt = b.querySelector("img").alt; lbCap.textContent = b.dataset.cap;
+      if (lb.showModal) lb.showModal(); else lb.setAttribute("open", "");
+    });
+  });
+  function closeLb(){ if (lb.close) lb.close(); else lb.removeAttribute("open"); }
+  document.getElementById("lbClose").addEventListener("click", closeLb);
+  lb.addEventListener("click", function(e){ if (e.target === lb) closeLb(); });
+
+  /* ---------- Índice de épocas ---------- */
+  var links = document.querySelectorAll("#eraNav a"), nav = document.getElementById("eraNav");
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        links.forEach(function(a){
+          var on = a.getAttribute("href") === "#" + e.target.id;
+          a.classList.toggle("on", on);
+          if (on) nav.scrollTo({left: a.offsetLeft - 16, behavior: "smooth"});
+        });
+      });
+    }, {rootMargin: "-35% 0px -55% 0px"});
+    document.querySelectorAll(".era").forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
